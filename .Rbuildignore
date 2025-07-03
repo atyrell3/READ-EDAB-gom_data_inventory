@@ -1,0 +1,4 @@
+^renv$
+^renv\.lock$
+^READ-EDAB-gom_data_inventory\.Rproj$
+^\.Rproj\.user$

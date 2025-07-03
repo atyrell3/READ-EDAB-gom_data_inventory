@@ -1,0 +1,15 @@
+Package: gomData
+Title: Gulf of Maine Data Inventory
+Version: 0.1.0
+Authors@R: 
+    person("Abigail", "Tyrell", , "abigail.tyrell@noaa.gov", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-6656-8470"))
+Description: An inventory of environmental and biological data in the Gulf
+    of Maine, including sources and availability.
+License: MIT
+Encoding: UTF-8
+LazyData: TRUE
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2
+Depends: 
+    R (>= 3.5)

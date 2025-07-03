@@ -1,0 +1,79 @@
+---
+title: "Gulf of Maine Data Inventory"
+author: "Abigail Tyrell"
+date: "`r format(Sys.Date(), '%e %B %Y')`"
+# site: bookdown::bookdown_site
+always_allow_html: true
+# documentclass: book
+github-repo: NEFSC/READ-EDAB-gom_data_inventory
+description: "This book documents an inventory of environmental and biological data in the Gulf of Maine, including sources and availability."
+output:
+  bookdown::gitbook:
+    config:
+      toc:
+        collapse: section  # Or "section" or "none" (or null)
+---
+
+```{r setup}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE
+)
+
+devtools::load_all(here::here())
+```
+
+# Project overview
+## Introduction
+
+This book documents an inventory of environmental and biological data in the Gulf of Maine, including sources and availability. The inventory includes information about the projects, such as the lead entity, partner entities, project description, data start and end dates, project website, data links, metadata links, principal investigator (PI) name and contact information, spatial scale, data categories, data availability, data type, and notes.
+
+The data are stored in a data frame called `gom_data`, which is available in this R package. The data frame contains 236 rows and 17 variables. Each row represents a project, and the variables provide information about the project and its associated data.
+
+A full written report summarizing this data, as well as data gaps, will be available with [the BOEM Environmental Study series on the GovInfo website](https://www.govinfo.gov/app/search/%7B%22query%22%3A%22series%3A%5C%22BOEM%20Environmental%20Studies%5C%22%22%2C%22offset%22%3A0%7D).
+
+## Data
+
+```{r}
+tbl <- gom_data |>
+  # dplyr::mutate_all(~stringr::str_wrap(.x)) |>
+  DT::datatable(
+    rownames = FALSE,
+    colnames = colnames(gom_data) |> stringr::str_replace_all("_", " ") |> stringr::str_to_title(),
+    filter = list(
+      position = "top",
+      clear = FALSE
+    ),
+    extensions = "Scroller",
+    options = list(
+      search = list(regex = TRUE),
+      deferRender = TRUE,
+      scrollY = 400,
+      scrollX = TRUE,
+      scroller = TRUE
+      # columnDefs = list(list(width = '10%', targets = 4))
+    )
+  )
+tbl <- DT::formatStyle(tbl,
+  columns = c("project_name", "project_description", "pi_name"),
+  display = "block",
+  `overflow-wrap` = "break-word",
+  overflow = "auto",
+  width = "300px"
+)
+
+tbl
+```
+
+## Disclaimers
+
+### License
+Software code created by U.S. Government employees is not subject to copyright in the United States (17 U.S.C. §105). 
+The United States/Department of Commerce reserve all rights to seek and obtain copyright protection in countries other 
+than the United States for Software authored in its entirety by the Department of Commerce. To this end, the Department 
+of Commerce hereby grants to Recipient a royalty-free, nonexclusive license to use, copy, and create derivative works of 
+the Software outside of the United States.
+
+### Legal 
+This repository is a scientific product and is not official communication of the National Oceanic and Atmospheric Administration, or the United States Department of Commerce. All NOAA GitHub project code is provided on an ‘as is’ basis and the user assumes responsibility for its use. Any claims against the Department of Commerce or Department of Commerce bureaus stemming from the use of this GitHub project will be governed by all applicable Federal law. Any reference to specific commercial products, processes, or services by service mark, trademark, manufacturer, or otherwise, does not constitute or imply their endorsement, recommendation or favoring by the Department of Commerce. The Department of Commerce seal and logo, or the seal and logo of a DOC bureau, shall not be used in any manner to imply endorsement of any commercial product or activity by DOC or the United States Government.

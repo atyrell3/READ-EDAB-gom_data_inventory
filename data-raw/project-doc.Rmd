@@ -1,0 +1,36 @@
+## `r sub_dat$project_name[i]`
+
+### Project information
+Lead entity: `r sub_dat$lead_entity[i]`
+
+Partner entities: `r sub_dat$partner_entities[i]`
+
+PI name: `r sub_dat$pi_name[i]`
+
+PI contact information: `r sub_dat$pi_contact_info[i]`
+
+Data start year: `r sub_dat$data_start_date[i]`
+
+Data end year: `r sub_dat$data_end_date[i]`
+
+Spatial scale: `r sub_dat$spatial_scale[i]`
+
+### Data information
+Project link: `r sub_dat$project_website[i]`
+
+Data link: `r sub_dat$link_to_data_if_different[i]`
+
+Metadata link: `r sub_dat$link_to_metadata_if_different[i]`
+
+Data availability: `r sub_dat$data_availability[i]`
+
+Data categories: `r sub_dat$data_categories[i]`
+
+Data type: `r sub_dat$data_type[i]`
+
+### Project description
+
+`r sub_dat$project_description[i]`
+
+```{r, results = "asis", eval = sub_dat$sourced_from[i] != "this project"}
+print(paste("This data was sourced from:", sub_dat$sourced_from[i]))

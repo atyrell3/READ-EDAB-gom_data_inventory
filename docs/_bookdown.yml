@@ -1,0 +1,18 @@
+delete_merged_file: yes
+rmd_files: [
+"index.Rmd",
+"Chemical-oceanography.Rmd",
+"Physical-oceanography.Rmd",
+"Bathymetry.Rmd",
+"Habitat.Rmd",
+"Plankton.Rmd",
+"Forage-fish.Rmd",
+"Groundfish.Rmd",
+"Highly-migratory-fish.Rmd",
+"Protected-fish.Rmd",
+"Molluscs.Rmd",
+"Crustaceans.Rmd",
+"Acoustic.Rmd",
+"Marine-mammals.Rmd",
+"Sea-turtles.Rmd",
+"Seabirds.Rmd"]

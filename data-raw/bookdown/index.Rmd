@@ -28,9 +28,9 @@ devtools::load_all(here::here())
 # Project overview
 ## Introduction
 
-This book documents an inventory of environmental and biological data in the Gulf of Maine, including sources and availability. The inventory includes information about the projects, such as the lead entity, partner entities, project description, data start and end dates, project website, data links, metadata links, principal investigator (PI) name and contact information, spatial scale, data categories, data availability, data type, and notes.
+This book documents an inventory of environmental and biological data in the Gulf of Maine, including sources and availability. The inventory includes information about the projects, such as the lead entity, partner entities, project description, data start and end dates, project website, data links, metadata links, principal investigator (PI) name and contact information, spatial scale, data categories, data availability, data type, and notes. Data can be viewed in table form in the following section, and data are also organized by topical category and displayed in a written text format in the chapters linked in the navigation bar to the left. Please note that a single dataset or project may be indexed (e.g., repeated) under multiple topics, if pertinent. The data are intended to be used by researchers, managers, and other stakeholders interested in the Gulf of Maine ecosystem.
 
-The data are stored in a data frame called `gom_data`, which is available in this R package. The data frame contains 236 rows and 17 variables. Each row represents a project, and the variables provide information about the project and its associated data.
+The data are also stored in a data frame called `gom_data`, which is available in this R package, and are also available for download in csv format at [`data-raw/gom_data_inventory.csv`](https://github.com/atyrell3/READ-EDAB-gom_data_inventory/blob/main/data-raw/gom_data_inventory.csv). The data frame contains 236 rows and 17 variables. Each row represents a project, and the variables provide information about the project and its associated data.
 
 A full written report summarizing this data, as well as data gaps, will be available with [the BOEM Environmental Study series on the GovInfo website](https://www.govinfo.gov/app/search/%7B%22query%22%3A%22series%3A%5C%22BOEM%20Environmental%20Studies%5C%22%22%2C%22offset%22%3A0%7D).
 
@@ -65,6 +65,28 @@ tbl <- DT::formatStyle(tbl,
 )
 
 tbl
+```
+
+### Data documentation
+```{r, results = "asis"}
+txt <- readLines(here::here("R/data.R")) |>
+  stringr::str_remove_all("#'") |>
+  stringr::str_remove_all("#") |>
+  stringr::str_remove_all("\\{") |>
+  stringr::str_remove_all("\\}") |>
+  stringr::str_remove_all("\\\\code") |>
+  stringr::str_remove_all("\\\\") |>
+  stringr::str_replace_all("\\item", "- ") |>
+  stringr::str_replace_all("character", ": character;") |>
+  stringr::str_replace_all("@title", "Title:") |>
+  stringr::str_replace_all("@description", "\n\nDescription:") |>
+  stringr::str_replace_all("@format", "\n\nFormat:") |>
+  stringr::str_remove(".describe") |>
+  stringr::str_remove(".gom_data.") |>
+  stringr::str_replace("project_descriptionknit", "project_description") 
+
+res <- knitr::knit_child(text = txt, quiet = TRUE)
+cat(res, sep = "\n\n")
 ```
 
 ## Disclaimers

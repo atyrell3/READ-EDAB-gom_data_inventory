@@ -5,7 +5,7 @@
 #'   \item{\code{project_name}}{character Name of the project}
 #'   \item{\code{lead_entity}}{character The institution or organization leading the project}
 #'   \item{\code{partner_entities}}{character Partner entities involved in the project (optional)}
-#'   \item{\code{project_description}}{character Description of the project; usually taken from linked webpage or other source}
+#'   \item{\code{project_description}knit}{character Description of the project; usually taken from linked webpage or other source}
 #'   \item{\code{data_start_date}}{character The year of the earliest data collection recorded in the project; note that some projects may include legacy data collected before the official project start date}
 #'   \item{\code{data_end_date}}{character The year of the most recent data collection recorded in the project; "Present" indicates that the project is ongoing}
 #'   \item{\code{project_website}}{character Link to the project website or associated report or other documentation of the project's existence}
@@ -20,5 +20,4 @@
 #'   \item{\code{data_type}}{character There are two data categories. "Spatial" describes data that includes spatial information, such as coordinates. "Research project, synthesis, or technology development" describes data that does not include spatial information, but is relevant to the collection and interpretation of environmental and biological data in the Gulf of Maine.}
 #'   \item{\code{notes}}{character Any notes about the project or associated data (optional)}
 #' }
-#' @details DETAILS
 "gom_data"

@@ -7,11 +7,12 @@ for (j in c("Acoustic", "Bathymetry", "Chemical oceanography", "Crustaceans", "F
       text = readLines(here::here("data-raw/category-doc.Rmd")),
       j = j
     )
-    sink(here::here("docs", paste0(stringr::str_replace_all(j, " ", "-"), ".Rmd")))
+    sink(here::here("data-raw/bookdown", paste0(stringr::str_replace_all(j, " ", "-"), ".Rmd")))
     cat(res, sep = "\n\n")
     sink()
   }
 }
 
 
-bookdown::render_book(here::here("docs"))
+bookdown::render_book(input = here::here("data-raw/bookdown"),
+                      output_dir = here::here("docs"))

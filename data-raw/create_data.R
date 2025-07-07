@@ -80,4 +80,8 @@ gom_data <- data |>
 usethis::use_data(gom_data, overwrite = TRUE)
 write.csv(gom_data, here::here("data-raw/gom_data_inventory.csv"))
 
+ #manual fix for weird apostrophe...
+gom_data <- read.csv(here::here("data-raw/gom_data_inventory.csv"))
+usethis::use_data(gom_data, overwrite = TRUE)
+
 sinew::makeOxygen(gom_data)

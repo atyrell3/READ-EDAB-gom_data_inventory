@@ -2,8 +2,12 @@ Package: gomData
 Title: Gulf of Maine Data Inventory
 Version: 0.1.0
 Authors@R: 
-    person("Abigail", "Tyrell", , "abigail.tyrell@noaa.gov", role = c("aut", "cre"),
-           comment = c(ORCID = "0000-0002-6656-8470"))
+    c(person("Abigail", "Tyrell", , "abigail.tyrell@noaa.gov", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-6656-8470")),
+           person("Fiona", "Hogan", , "fiona@rodafisheries.org", role = "aut"),
+           person("Adelle", "Molina", , "adelle.molina@noaa.gov", role = "aut"),
+           person("Stephanie", "Owen", , "stephanie.owen@noaa.gov", role = "aut"),
+           person("Angela", "Silva", , "angela.silva@noaa.gov", role = "aut")
 Description: An inventory of environmental and biological data in the Gulf
     of Maine, including sources and availability.
 License: MIT

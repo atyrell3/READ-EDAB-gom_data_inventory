@@ -1,0 +1,16 @@
+
+# Coastal fish data
+
+```{r, results = "asis"}
+sub_dat <- gom_data |>
+  dplyr::filter(stringr::str_detect(data_categories, "Coastal fish"))
+
+# print(sub_dat$project_name)
+
+for (i in 1:nrow(sub_dat)) {
+  # print(sub_dat[i,])
+  res <- knitr::knit_child(input = here::here("data-raw/project-doc.Rmd"), quiet = TRUE)
+
+  cat(res, sep = "\n\n")
+}
+```

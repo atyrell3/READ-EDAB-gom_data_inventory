@@ -1,9 +1,9 @@
 
-# Protected fish data
+# Elasmobranchs data
 
 ```{r, results = "asis"}
 sub_dat <- gom_data |>
-  dplyr::filter(stringr::str_detect(data_categories, "Protected fish"))
+  dplyr::filter(stringr::str_detect(data_categories, "Elasmobranchs"))
 
 # print(sub_dat$project_name)
 

@@ -12,9 +12,28 @@ data <- read.csv(here::here(
       "duplicate",
       "include_old",
       "reviewed",
-      "x",
+      # "x",
       "include",
-      "notes"
+      "notes",
+      "in_paper",
+      "where_mentioned"
+    )
+  ) |>
+  # clean up categories
+  dplyr::mutate(
+    data_categories = data_categories |>
+      stringr::str_replace_all(
+        "Anadramous/Catadromous Fishes",
+        "Diadromous fish"
+      ) |>
+      stringr::str_remove_all("Forage fish") |>
+      stringr::str_replace_all(",[:blank:]*,", ", ") |>
+      stringr::str_remove_all("^,[:blank:]*"),
+    # fix apostrophe
+    project_name = dplyr::case_when(
+      stringr::str_detect(project_name, "^It") ~
+        "It's about time: A synthesis of changing phenology in the Gulf of Maine Ecosystem.",
+      TRUE ~ project_name
     )
   )
 
@@ -49,7 +68,11 @@ gom_data <- data |>
       spatial_scale == "NW Atlantic" ~ "Northwest Atlantic",
       TRUE ~ spatial_scale
     ),
-    project_description = gsub("[^a-zA-Z0-9[:punct:] ]", "", project_description)
+    project_description = gsub(
+      "[^a-zA-Z0-9[:punct:] ]",
+      "",
+      project_description
+    )
   )
 
 
@@ -77,11 +100,15 @@ gom_data <- data |>
 # )
 
 # add data
-usethis::use_data(gom_data, overwrite = TRUE)
-write.csv(gom_data, here::here("data-raw/gom_data_inventory.csv"))
+# usethis::use_data(gom_data, overwrite = TRUE)
+write.csv(
+  gom_data,
+  here::here("data-raw/gom_data_inventory.csv"),
+  row.names = FALSE
+)
 
- #manual fix for weird apostrophe...
-gom_data <- read.csv(here::here("data-raw/gom_data_inventory.csv"))
+#manual fix for weird apostrophe... ("It's about time: A synthesis of changing phenology in the Gulf of Maine Ecosystem.")
+# gom_data <- read.csv(here::here("data-raw/gom_data_inventory.csv"))
 usethis::use_data(gom_data, overwrite = TRUE)
 
 sinew::makeOxygen(gom_data)
